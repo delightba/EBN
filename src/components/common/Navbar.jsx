@@ -3,24 +3,68 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { useFavorites } from '../../context/FavoritesContext';
-import { FaFacebookF, FaTwitter, FaInstagram, FaPinterestP, FaRedditAlien, FaYoutube, FaGlobe, FaMoneyBillWave, FaSearch, FaHeart, FaShoppingCart, FaUser, FaPhoneAlt } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram, FaPinterestP, FaRedditAlien, FaYoutube, FaSearch, FaPhoneAlt } from 'react-icons/fa';
 import './Navbar.css';
+
+// SVG Icons
+const HeartIcon = () => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    className="nav-icon"
+  >
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+  </svg>
+);
+
+const CartIcon = () => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    className="nav-icon"
+  >
+    <circle cx="9" cy="21" r="1"></circle>
+    <circle cx="20" cy="21" r="1"></circle>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+  </svg>
+);
+
+const UserIcon = () => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    className="nav-icon"
+  >
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+    <circle cx="12" cy="7" r="4"></circle>
+  </svg>
+);
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const { getCartItemsCount } = useCart();
   const { getFavoritesCount } = useFavorites();
-  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
-  const categoryDropdownRef = useRef(null);
   const userDropdownRef = useRef(null);
 
   // Handle click outside to close dropdowns
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(event.target)) {
-        setShowCategoryDropdown(false);
-      }
       if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
         setShowUserDropdown(false);
       }
@@ -31,26 +75,6 @@ const Navbar = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
-  const categories = [
-    {
-      name: "Computer & Laptop",
-      subcategories: ["Laptops", "Desktops", "Monitors", "Components"]
-    },
-    {
-      name: "SmartPhone",
-      subcategories: ["iPhone", "Samsung", "Xiaomi", "Oppo", "Vivo", "Realme", "OnePlus"]
-    },
-    "Computer Accessories",
-    "Headset",
-    "Mobile Accessories",
-    "Gaming Console",
-    "Camera & Photo",
-    "TV & Home Appliances",
-    "Watch & Accessories",
-    "GPS & Navigation",
-    "Wearable Technologies"
-  ];
 
   const languages = [
     { code: 'en', name: 'English' },
@@ -67,10 +91,6 @@ const Navbar = () => {
     setShowUserDropdown(false);
   };
 
-  const toggleCategoryDropdown = () => {
-    setShowCategoryDropdown(!showCategoryDropdown);
-  };
-
   const toggleUserDropdown = () => {
     setShowUserDropdown(!showUserDropdown);
   };
@@ -83,7 +103,7 @@ const Navbar = () => {
       const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase();
       return <div className="avatar-initials">{initials}</div>;
     }
-    return <div className="avatar-initials">?</div>;
+    return <UserIcon />;
   };
 
   return (
@@ -133,7 +153,7 @@ const Navbar = () => {
         <div className="container">
           <div className="navbar-middle-content">
             <Link to="/" className="navbar-brand">
-              EBN
+              <img src="/images/logo.png" alt="logo" />
             </Link>
             
             <div className="search-bar">
@@ -145,12 +165,12 @@ const Navbar = () => {
             
             <div className="navbar-middle-actions">
               <Link to="/favorites" className="action-icon">
-                <FaHeart />
+                <HeartIcon />
                 <span className="count-badge">{getFavoritesCount()}</span>
               </Link>
               
               <Link to="/cart" className="action-icon">
-                <FaShoppingCart />
+                <CartIcon />
                 <span className="count-badge">{getCartItemsCount()}</span>
               </Link>
               
@@ -166,7 +186,7 @@ const Navbar = () => {
                 </div>
               ) : (
                 <Link to="/login" className="action-icon">
-                  <FaUser />
+                  <UserIcon />
                 </Link>
               )}
             </div>
@@ -181,41 +201,6 @@ const Navbar = () => {
         <div className="container">
           <div className="navbar-bottom-content">
             <div className="navbar-nav">
-              {/* All Categories Dropdown */}
-              <div 
-                className="category-nav-item" 
-                ref={categoryDropdownRef}
-                onClick={toggleCategoryDropdown}
-              >
-                <span>All Categories</span>
-                <span className="dropdown-arrow">
-                  {showCategoryDropdown ? '▲' : '▼'}
-                </span>
-                
-                {showCategoryDropdown && (
-                  <div className="category-dropdown">
-                    <ul>
-                      {categories.map((category, index) => (
-                        <li key={index}>
-                          {typeof category === 'object' ? (
-                            <div className="has-subcategory">
-                              <span>{category.name}</span>
-                              <span className="subcategory-arrow">›</span>
-                              <ul className="subcategory-list">
-                                {category.subcategories.map((subcat, subIndex) => (
-                                  <li key={subIndex}>{subcat}</li>
-                                ))}
-                              </ul>
-                            </div>
-                          ) : (
-                            <span>{category}</span>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
               <Link to="/">Home</Link>
               <Link to="/products">Products</Link>
               <Link to="/bidding">Bidding</Link>
@@ -262,4 +247,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar
