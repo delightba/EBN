@@ -794,6 +794,18 @@ const Home = () => {
           </div>
 
           <div className="featured-content">
+            <div className="featured-ad">
+              <div className="ad-content">
+                <h3>COMPUTER & ACCESSORIES</h3>
+                <h2>32% Discount</h2>
+                <p>For all electronics products</p>
+                <div className="offer-timer">
+                  <span>Offers ends in: <div className="timer-text">ENDS OF CHRISTMAS</div></span>
+                </div>
+                <button className="shop-now-btn">SHOP NOW</button>
+              </div>
+            </div>
+            
             <div className="deals-grid">
               {bestDeals.map((product) => (
                 <div
@@ -875,18 +887,6 @@ const Home = () => {
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div className="featured-ad">
-              <div className="ad-content">
-                <h3>COMPUTER & ACCESSORIES</h3>
-                <h2>32% Discount</h2>
-                <p>For all electronics products</p>
-                <div className="offer-timer">
-                  <span>Offers ends in: <div className="timer-text">ENDS OF CHRISTMAS</div></span>
-                </div>
-                <button className="shop-now-btn">SHOP NOW</button>
-              </div>
             </div>
           </div>
         </div>

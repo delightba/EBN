@@ -526,7 +526,6 @@
   
   .banner-content {
     max-width: 100%;
-    margin-bottom: 20px;
   }
   
   .banner-image {
@@ -1255,7 +1254,9 @@
   .carousel-control.next {
     right: -10px;
   }
-}/* Featured Products Section */
+}
+
+/* Featured Products Section */
 .featured-products-section {
   padding: 60px 0;
   background: #fff;
@@ -1320,7 +1321,7 @@
 
 .featured-content {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 300px 1fr;
   gap: 30px;
 }
 
@@ -1546,7 +1547,7 @@
   flex-direction: column;
   justify-content: center;
   z-index: 2;
-  padding-bottom: 1000px;
+  padding-bottom: 500px;
 }
 
 .ad-content h3 {
@@ -1586,6 +1587,9 @@
   font-weight: 700;
   margin-top: 5px;
   background-color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
 }
 
 .shop-now-btn {
