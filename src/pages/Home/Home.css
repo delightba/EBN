@@ -1706,3 +1706,232 @@
     margin: 0 auto;
   }
 }
+/* New Product Introduction Section */
+.new-product-intro {
+  padding: 40px 0;
+  background-color: white;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.intro-card {
+  border-radius: 12px;
+  padding: 25px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.intro-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.intro-card.apple-bg {
+ background-image: url('/images/speaker.png');
+  color: white;
+}
+
+.intro-card.xiaomi-bg {
+  background-image: url('/images/xiomi.png');
+  color: #333;
+  border: 1px solid #e9ecef;
+}
+
+.intro-content {
+  max-width: 75%;
+  z-index: 2;
+  position: relative;
+}
+
+.intro-tag {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+  display: inline-block;
+  background-color: #7bbfed;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+
+.intro-new {
+  display: inline-block;
+  background: #ff6b6b;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.intro-brand {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: black;
+}
+
+.intro-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.2;
+  color: black;
+}
+
+.intro-description {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  opacity: 0.9;
+  color: rgb(57, 56, 56);
+}
+
+.intro-price {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: inherit;
+}
+
+.intro-shop-btn {
+  background: #FA8232;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dark-theme .intro-shop-btn {
+  color: white;
+}
+
+.dark-theme .intro-shop-btn:hover {
+  background: white;
+  color: #1d2b3a;
+}
+
+.light-theme .intro-shop-btn {
+  color: #333;
+  border-color: #333;
+}
+
+.light-theme .intro-shop-btn:hover {
+  background: #333;
+  color: white;
+}
+
+
+
+
+/* Target the Xiaomi background class specifically */
+.intro-card.xiaomi-bg {
+  background-image: url('/images/xiomi.png') !important;
+  color: #fff;
+}
+
+.intro-card.xiaomi-bg .intro-brand {
+  color: #fff !important;
+  font-size: 24px !important;
+}
+
+.intro-card.xiaomi-bg .intro-name {
+  color: #fff !important;
+  font-size: 20px !important;
+}
+
+.intro-card.xiaomi-bg .intro-description {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 14px !important;
+}
+
+.intro-card.xiaomi-bg .intro-price {
+  color: #ffeb3b !important;
+  font-size: 22px !important;
+}
+
+.intro-card.xiaomi-bg .intro-shop-btn {
+  background-color: #FA8232 !important;
+  color: white !important;
+  border: none !important;
+}
+
+.intro-card.xiaomi-bg .intro-shop-btn:hover {
+  background-color: white !important;
+  color: #FA8232 !important;
+}
+
+.intro-card.xiaomi-bg .intro-tag{
+  background-color: #ffeb3b !important;
+  color: black !important;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .intro-card {
+    min-height: 200px;
+    padding: 20px;
+  }
+  
+  .intro-name {
+    font-size: 16px;
+  }
+  
+  .intro-brand {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .new-product-intro {
+    padding: 30px 0;
+  }
+  
+  .intro-card {
+    min-height: 180px;
+    padding: 15px;
+  }
+  
+  .intro-content {
+    max-width: 100%;
+  }
+  
+  .intro-name {
+    font-size: 15px;
+  }
+  
+  .intro-brand {
+    font-size: 18px;
+  }
+  
+  .intro-price {
+    font-size: 18px;
+  }
+  
+  .intro-description {
+    font-size: 12px;
+  }
+}
+
+

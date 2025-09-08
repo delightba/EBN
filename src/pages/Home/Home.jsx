@@ -307,6 +307,31 @@ const Home = () => {
     },
   ];
 
+  // New product introduction data
+  const newProductsIntro = [
+    {
+      id: 1,
+      brand: "New Apple",
+      name: "Homepod Mini",
+      description: "HomePod mini delivers unexpectedly.",
+      // price: "$99",
+      buttonText: "SHOP NOW →",
+      backgroundClass: "apple-bg",
+      theme: "dark",
+    },
+    {
+      id: 2,
+      brand: "Xiaomi",
+      name: "Mi 11 Ultra 12GB+256GB",
+      description:
+        "Data provided by internal laboratories.",
+      // price: "$590",
+      buttonText: "SHOP NOW →",
+      backgroundClass: "xiaomi-bg",
+      theme: "light",
+    },
+  ];
+
   // Countdown timer effect
   useEffect(() => {
     const timer = setInterval(() => {
@@ -800,12 +825,15 @@ const Home = () => {
                 <h2>32% Discount</h2>
                 <p>For all electronics products</p>
                 <div className="offer-timer">
-                  <span>Offers ends in: <div className="timer-text">ENDS OF CHRISTMAS</div></span>
+                  <span>
+                    Offers ends in:{" "}
+                    <div className="timer-text">ENDS OF CHRISTMAS</div>
+                  </span>
                 </div>
                 <button className="shop-now-btn">SHOP NOW</button>
               </div>
             </div>
-            
+
             <div className="deals-grid">
               {bestDeals.map((product) => (
                 <div
@@ -890,6 +918,38 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </section>
+      {/* New Product Introduction Section */}
+      <section className="new-product-intro">
+        <div className="container">
+          <div className="intro-grid">
+            {newProductsIntro.map((product) => (
+              <div
+                key={product.id}
+                className={`intro-card ${product.backgroundClass} ${product.theme}-theme`}
+              >
+                <div className="intro-content">
+                  <span className="intro-tag">INTRODUCING</span>
+                  {product.brand === "Apple" && (
+                    <span className="intro-new">New</span>
+                  )}
+                  <h2 className="intro-brand">{product.brand}</h2>
+                  <h3 className="intro-name">{product.name}</h3>
+                  <p className="intro-description">{product.description}</p>
+                  {product.price && (
+                    <div className="intro-price">{product.price}</div>
+                  )}
+                  <button className={`intro-shop-btn ${product.theme}-btn`}>
+                    {product.buttonText}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="computer-accessories">
+
       </section>
     </div>
   );
